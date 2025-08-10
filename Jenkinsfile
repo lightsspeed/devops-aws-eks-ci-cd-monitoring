@@ -1,12 +1,8 @@
-
-
 pipeline {
     agent any
     
     environment {
-        // Update the main app image name to match the deployment file
         DOCKER_IMAGE_NAME = 'lightsspeed/cloudcalulator:1.0.0'
-        // DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
         GITHUB_CREDENTIALS = credentials('githubcreds')
         GIT_BRANCH = "main"
     }
@@ -23,7 +19,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 script {
-                    clone("https://github.com/lightsspeed/devops-aws-eks-ci-cd-monitoring.git","master")
+                    clone("https://github.com/lightsspeed/devops-aws-eks-ci-cd-monitoring.git", env.GIT_BRANCH)
                 }
             }
         }
@@ -35,14 +31,12 @@ pipeline {
                         script {
                             docker_build(
                                 imageName: env.DOCKER_IMAGE_NAME,
-                                // imageTag: env.DOCKER_IMAGE_TAG,
                                 dockerfile: 'Dockerfile',
                                 context: '.'
                             )
                         }
                     }
                 }
-                
             }
         }
         
@@ -57,10 +51,7 @@ pipeline {
         stage('Security Scan with Trivy') {
             steps {
                 script {
-                    // Create directory for results
-                  
                     trivy_scan()
-                    
                 }
             }
         }
@@ -72,29 +63,12 @@ pipeline {
                         script {
                             docker_push(
                                 imageName: env.DOCKER_IMAGE_NAME,
-                                // imageTag: env.DOCKER_IMAGE_TAG,
                                 credentials: 'dockercreds'
                             )
                         }
                     }
                 }
-                
             }
         }
-        
-        // Add this new stage
-        // stage('Update Kubernetes Manifests') {
-        //     steps {
-        //         script {
-        //             update_k8s_manifests(
-        //                 imageTag: env.DOCKER_IMAGE_TAG,
-        //                 manifestsPath: 'kubernetes',
-        //                 gitCredentials: 'github-credentials',
-        //                 gitUserName: 'Jenkins CI',
-        //                 gitUserEmail: 'misc.lucky66@gmail.com'
-        //             )
-        //         }
-        //     }
-        // }
     }
 }
