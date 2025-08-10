@@ -7,14 +7,14 @@ pipeline {
         GIT_BRANCH = "main"
     }
     
-    stages {
-        stage('Cleanup Workspace') {
-            steps {
-                script {
-                    cleanWs()
-                }
-            }
-        }
+    // stages {
+    //     stage('Cleanup Workspace') {
+    //         steps {
+    //             script {
+    //                 cleanWs()
+    //             }
+    //         }
+    //     }
         
         stage('Clone Repository') {
             steps {
