@@ -18,9 +18,14 @@ pipeline {
         
         stage('Clone Repository') {
             steps {
-                script {
-                    clone("https://github.com/lightsspeed/devops-aws-eks-ci-cd-monitoring.git", env.GIT_BRANCH)
-                }
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: "*/${env.GIT_BRANCH}"]],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/lightsspeed/devops-aws-eks-ci-cd-monitoring.git',
+                        credentialsId: 'githubcreds'
+                    ]]
+                ])
             }
         }
         
