@@ -7,7 +7,7 @@ pipeline {
         // Update the main app image name to match the deployment file
         DOCKER_IMAGE_NAME = 'lightsspeed/cloudcalulator:1.0.0'
         // DOCKER_IMAGE_TAG = "${BUILD_NUMBER}"
-        GITHUB_CREDENTIALS = credentials('github-credentials')
+        GITHUB_CREDENTIALS = credentials('githubcreds')
         GIT_BRANCH = "main"
     }
     
@@ -73,7 +73,7 @@ pipeline {
                             docker_push(
                                 imageName: env.DOCKER_IMAGE_NAME,
                                 // imageTag: env.DOCKER_IMAGE_TAG,
-                                credentials: 'docker-hub-credentials'
+                                credentials: 'dockercreds'
                             )
                         }
                     }
