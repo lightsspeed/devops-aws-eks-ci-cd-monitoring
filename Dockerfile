@@ -1,5 +1,5 @@
 
-FROM python:3.14
+FROM python:3.11
 
 # Set working directory
 WORKDIR /app
@@ -39,4 +39,4 @@ EXPOSE 8501
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
 # Default command to run the Streamlit app
-CMD ["streamlit", "run", "cloud_billing_app.py", "--server.port=8501", "--server.address=0.0.0.0"]☺
+CMD ["streamlit", "run", "cloud_billing_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
