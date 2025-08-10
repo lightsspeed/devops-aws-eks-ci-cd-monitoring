@@ -1,0 +1,1 @@
+Infrastructure-as-Code DevOps project using AWS EKS, Terraform, and Jenkins CI/CD with Prometheus, Grafana, and ELK Stack for monitoring, logging, and alerting. Scalable, automated, and production-ready.

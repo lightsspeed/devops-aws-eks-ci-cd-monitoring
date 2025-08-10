@@ -1,0 +1,8 @@
+﻿# cloud_billing_calculator
+echo "# cloud_billing_calculator" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/lightsspeed/cloud_billing_calculator.git
+git push -u origin main

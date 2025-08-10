@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/.terraform.lock.hcl
+terraform/crash.log
+
+# Environment files
+.env
+*.env
+
+# Docker
+*.pid
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python virtual environments
+venv/
+.env/
